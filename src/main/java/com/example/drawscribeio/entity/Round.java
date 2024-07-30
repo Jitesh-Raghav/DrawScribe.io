@@ -36,6 +36,8 @@ public class Round implements Serializable {
     @JoinColumn(name="current_drawer_id", nullable = false)
     private User currentDrawer;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="word_id", nullable = false)
+    private Word drawingWord;
 
-    //word object inject...
 }
