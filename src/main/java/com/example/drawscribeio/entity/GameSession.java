@@ -1,5 +1,6 @@
 package com.example.drawscribeio.entity;
 
+import com.example.drawscribeio.entity.LeaderBoard.Leaderboard;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +32,7 @@ public class GameSession {
 
     @OneToMany(mappedBy = "gameSessions")
     private Set<Round> rounds= new HashSet<>();
+
+    @OneToOne(mappedBy="gameSession", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Leaderboard leaderboards;
 }

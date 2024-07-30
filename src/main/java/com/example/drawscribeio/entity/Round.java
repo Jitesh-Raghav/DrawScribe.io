@@ -45,4 +45,6 @@ public class Round implements Serializable {
     @OneToMany(mappedBy = "round",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Timer> timers= new HashSet<>();
 
+    @OneToMany(mappedBy = "round", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Drawing> drawingSet= new HashSet<>();
 }

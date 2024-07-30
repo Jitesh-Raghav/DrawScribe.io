@@ -1,5 +1,6 @@
 package com.example.drawscribeio.entity;
 
+import com.example.drawscribeio.entity.LeaderBoard.LeaderBoardEntry;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -60,6 +61,12 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "currentDrawer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Round> roundsAsDrawer = new HashSet<>();
+
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<LeaderBoardEntry> leaderBoardEntriesentries= new HashSet<>();
+
+    @OneToMany(mappedBy="drawer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Drawing> drawingSets = new HashSet<>();
 
     @PrePersist
     protected void onCreate(){
