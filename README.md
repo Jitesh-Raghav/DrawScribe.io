@@ -3,7 +3,11 @@ Drawscribe is an engaging online drawing and guessing game similar to Skribbl.io
 Tech Stack:
 
 Frontend: React, HTML5, CSS3
+
 Backend: Java Spring Boot
+
 Database: PostgreSQL or MySQL
+
 Real-time Communication: WebSocket
+
 Build Tools: Maven or Gradle
