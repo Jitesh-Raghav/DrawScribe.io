@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter@Setter
@@ -39,5 +41,8 @@ public class Round implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="word_id", nullable = false)
     private Word drawingWord;
+
+    @OneToMany(mappedBy = "round",cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Timer> timers= new HashSet<>();
 
 }
