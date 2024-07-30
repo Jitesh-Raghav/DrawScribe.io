@@ -1,4 +1,41 @@
 package com.example.drawscribeio.entity;
 
-public class Round {
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Entity
+@Getter@Setter
+@AllArgsConstructor@NoArgsConstructor
+public class Round implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long round_id;
+
+    @Column(nullable = false)
+    private LocalDateTime roundStartTime;
+    @Column
+    private LocalDateTime roundEndTime;
+
+    @Column(nullable = false)
+    private Boolean isActive;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_session_id", nullable = false)
+    private GameSession gameSessions;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="current_drawer_id", nullable = false)
+    private User currentDrawer;
+
+
+    //word object inject...
 }

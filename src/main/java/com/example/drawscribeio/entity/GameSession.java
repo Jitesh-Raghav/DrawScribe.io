@@ -26,4 +26,9 @@ public class GameSession {
     @ManyToMany(mappedBy = "gameSessions")
     private Set<User> users= new HashSet<>();
 
+    @OneToMany(mappedBy = "gameSessions")
+    private Set<Score> scores = new HashSet<>();
+
+    @OneToMany(mappedBy = "gameSessions")
+    private Set<Round> rounds= new HashSet<>();
 }

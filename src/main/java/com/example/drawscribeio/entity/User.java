@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -16,7 +17,9 @@ import java.util.*;
 @Getter
 @Setter
 @Table(name="users")       //REFER TO ER DIAGRAMS IF CONFUSION ...
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,6 +54,13 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ChatMessage> chatMessages= new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Score> scores= new HashSet<>();
+
+    @OneToMany(mappedBy = "currentDrawer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Round> roundsAsDrawer = new HashSet<>();
+
     @PrePersist
     protected void onCreate(){
         createdAt= LocalDateTime.now();
