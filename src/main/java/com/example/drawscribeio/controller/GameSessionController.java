@@ -36,8 +36,8 @@ public class GameSessionController {
     }
 
     @PostMapping
-    public ResponseEntity<GameSession> createGameSession(@RequestBody GameSession gameSession){
-        return new ResponseEntity<>(gameSessionService.createGameSession(gameSession), HttpStatus.CREATED);
+    public ResponseEntity<GameSession> createGameSession(@RequestBody GameSession gameSession, Long userId){
+        return new ResponseEntity<>(gameSessionService.createGameSession(gameSession, userId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{gameSessionId}")

@@ -38,9 +38,6 @@ public class UserServiceImpl implements UserService {
             userDTO.setEmail(user.getEmail());
         }
 
-        if (user.getAvatarUrl() != null) {
-            userDTO.setAvatarUrl(user.getAvatarUrl());
-        }
 
         return userDTO;
     }
@@ -64,9 +61,6 @@ public class UserServiceImpl implements UserService {
             user.setEmail(userDTO.getEmail());
         }
 
-        if (userDTO.getAvatarUrl() != null) {
-            user.setAvatarUrl(userDTO.getAvatarUrl());
-        }
 
         return user;
     }
@@ -79,10 +73,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long userId) throws UserException {
-        User user= userRepository.findById(userId)
-                .orElseThrow(()->new UserException("user not found with id " + userId));
-        return user;
+    public UserDto getUserById(Long userId) throws UserException {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserException("User not found with id: " + userId));
+
+        return mapToDTO(user);
+    }
+
+    private UserDto mapToDTO(User user) {
+        UserDto userDTO = new UserDto();
+        userDTO.setUserId(user.getUserId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        // Set other fields as necessary
+
+        return userDTO;
     }
 
     @Override
@@ -105,9 +110,6 @@ public class UserServiceImpl implements UserService {
                 user.setEmail(userDetails.getEmail());
             }
 
-            if (userDetails.getAvatarUrl() != null) {
-                user.setAvatarUrl(userDetails.getAvatarUrl());
-            }
 
             // Update other fields as necessary
             User updatedUser = userRepository.save(user);

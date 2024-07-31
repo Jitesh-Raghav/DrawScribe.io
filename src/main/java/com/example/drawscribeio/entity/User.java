@@ -1,6 +1,7 @@
 package com.example.drawscribeio.entity;
 
 import com.example.drawscribeio.entity.LeaderBoard.LeaderBoardEntry;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.*;
 @Getter
 @Setter
 @Table(name="users")       //REFER TO ER DIAGRAMS IF CONFUSION ...
-public class User implements Serializable {
+public class User  implements Serializable{
 
     private static final long serialVersionUID = 1L;
 

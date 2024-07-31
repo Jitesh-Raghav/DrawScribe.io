@@ -28,12 +28,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-   public ResponseEntity<User> getUserById(@PathVariable Long userId) throws UserException {
-        User user= userService.getUserById(userId);
-        if(user==null){
+   public ResponseEntity<UserDto> getUserById(@PathVariable Long userId) throws UserException {
+        UserDto userDto= userService.getUserById(userId);
+        if(userDto==null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(userDto);
     }
 
     @PostMapping

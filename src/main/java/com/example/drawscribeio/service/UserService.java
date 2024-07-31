@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
 
     List<User> getAllUsers();
-    User getUserById(Long userId) throws UserException;
+    UserDto getUserById(Long userId) throws UserException;
     User createUser(User user);
     UserDto updateUser(Long id, UserDto userDetails);
     void deleteUser(Long userId);

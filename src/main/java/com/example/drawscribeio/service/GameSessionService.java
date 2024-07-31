@@ -8,6 +8,6 @@ public interface GameSessionService {
 
     List<GameSession> getAllGameSessions();
     GameSession getGameSessionById(Long gameSessionId);
-    GameSession createGameSession(GameSession gameSessionDetails);
+    GameSession createGameSession(GameSession gameSessionDetails, Long userId);
     void deleteGameSession(Long gameSessionId);
 }

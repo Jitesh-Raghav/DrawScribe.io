@@ -22,6 +22,8 @@ public class Round implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long round_id;
 
+    private Integer round;
+
     @Column(nullable = false)
     private LocalDateTime roundStartTime;
     @Column
