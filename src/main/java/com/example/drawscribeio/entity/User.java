@@ -24,7 +24,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long user_id;
+    private Long userId;
 
     @Column(nullable = false, unique = true, length = 50)
     private String username;
@@ -36,7 +36,7 @@ public class User implements Serializable {
     private String email;
 
     @Column(length = 250)
-    private String avatar;
+    private String avatarUrl;
 
     @Column(nullable = false)
     private Integer score=0;
