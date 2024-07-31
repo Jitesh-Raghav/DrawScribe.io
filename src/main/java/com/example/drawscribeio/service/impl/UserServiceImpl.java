@@ -8,6 +8,7 @@ import com.example.drawscribeio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -72,9 +73,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserDto> getAllUsers() {
+    public List<User> getAllUsers() {
         List<User> users=userRepository.findAll();
-        return users.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return new ArrayList<>(users);
     }
 
     @Override
@@ -85,10 +86,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto createUser(UserDto userDto) {
-        User user = convertToEntity(userDto);
+    public User createUser(User user) {
         User savedUser = userRepository.save(user);
-        return convertToDTO(savedUser);
+        return savedUser;
     }
 
     @Override

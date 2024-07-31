@@ -19,9 +19,9 @@ public class GameSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long game_session_id;
+    private Long game_sessionId;
 
-    @Column(nullable = false, unique = true, length = 10)
+    @Column(nullable = false, unique = true, length = 250)
     private String session_code;
 
     @ManyToMany(mappedBy = "gameSessions")
@@ -33,6 +33,6 @@ public class GameSession {
     @OneToMany(mappedBy = "gameSessions")
     private Set<Round> rounds= new HashSet<>();
 
-    @OneToOne(mappedBy="gameSession", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy="gameSession", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Leaderboard leaderboards;
 }

@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> GetAllUsers(){
+    public List<User> GetAllUsers(){
        return userService.getAllUsers();
     }
 
@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto){
-        return userService.createUser(userDto);
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
     }
 
     @PutMapping("/{userId}")

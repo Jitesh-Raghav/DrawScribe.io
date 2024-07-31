@@ -25,7 +25,7 @@ public class Leaderboard implements Serializable {
     private Long leaderboardId;
 
     @OneToOne (fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_session_id", nullable = false)
+    @JoinColumn(name = "game_session_id")
     private GameSession gameSession;
 
     @OneToMany(mappedBy = "leaderboard", cascade = CascadeType.ALL, orphanRemoval = true)
