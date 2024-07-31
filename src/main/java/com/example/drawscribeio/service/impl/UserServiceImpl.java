@@ -2,6 +2,7 @@ package com.example.drawscribeio.service.impl;
 
 import com.example.drawscribeio.dto.UserDto;
 import com.example.drawscribeio.entity.User;
+import com.example.drawscribeio.exception.UserException;
 import com.example.drawscribeio.repository.UserRepository;
 import com.example.drawscribeio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserById(Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        return user.map(this::convertToDTO).orElse(null);
+    public User getUserById(Long userId) throws UserException {
+        User user= userRepository.findById(userId)
+                .orElseThrow(()->new UserException("user not found with id " + userId));
+        return user;
     }
 
     @Override
