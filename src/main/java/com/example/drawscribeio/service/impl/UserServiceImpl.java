@@ -19,22 +19,57 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     private UserDto convertToDTO(User user) {
+        if (user == null) {
+            return null;
+        }
+
         UserDto userDTO = new UserDto();
-        userDTO.setUserId(user.getUserId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setAvatarUrl(user.getAvatarUrl());
+
+        if (user.getUserId() != null) {
+            userDTO.setUserId(user.getUserId());
+        }
+
+        if (user.getUsername() != null) {
+            userDTO.setUsername(user.getUsername());
+        }
+
+        if (user.getEmail() != null) {
+            userDTO.setEmail(user.getEmail());
+        }
+
+        if (user.getAvatarUrl() != null) {
+            userDTO.setAvatarUrl(user.getAvatarUrl());
+        }
+
         return userDTO;
     }
 
     private User convertToEntity(UserDto userDTO) {
+        if (userDTO == null) {
+            return null;
+        }
+
         User user = new User();
-        user.setUserId(userDTO.getUserId());
-        user.setUsername(userDTO.getUsername());
-        user.setEmail(userDTO.getEmail());
-        user.setAvatarUrl(userDTO.getAvatarUrl());
+
+        if (userDTO.getUserId() != null) {
+            user.setUserId(userDTO.getUserId());
+        }
+
+        if (userDTO.getUsername() != null) {
+            user.setUsername(userDTO.getUsername());
+        }
+
+        if (userDTO.getEmail() != null) {
+            user.setEmail(userDTO.getEmail());
+        }
+
+        if (userDTO.getAvatarUrl() != null) {
+            user.setAvatarUrl(userDTO.getAvatarUrl());
+        }
+
         return user;
     }
+
 
     @Override
     public List<UserDto> getAllUsers() {
@@ -61,15 +96,26 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            user.setUsername(userDetails.getUsername());
-            user.setEmail(userDetails.getEmail());
-            user.setAvatarUrl(userDetails.getAvatarUrl());
+
+            if (userDetails.getUsername() != null) {
+                user.setUsername(userDetails.getUsername());
+            }
+
+            if (userDetails.getEmail() != null) {
+                user.setEmail(userDetails.getEmail());
+            }
+
+            if (userDetails.getAvatarUrl() != null) {
+                user.setAvatarUrl(userDetails.getAvatarUrl());
+            }
+
             // Update other fields as necessary
             User updatedUser = userRepository.save(user);
             return convertToDTO(updatedUser);
         }
         return null;
     }
+
 
     @Override
     public void deleteUser(Long userId) {
