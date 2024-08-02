@@ -21,6 +21,8 @@ public class Score implements Serializable {
     @Column(nullable = false)
     private Integer points;
 
+    private boolean isCorrectGuess;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable = false)
     private User user;

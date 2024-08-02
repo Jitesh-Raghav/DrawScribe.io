@@ -22,7 +22,7 @@ public class Round implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long round_id;
 
-    private Integer round;
+    private Integer roundNumber;
 
     @Column(nullable = false)
     private LocalDateTime roundStartTime;
@@ -31,6 +31,8 @@ public class Round implements Serializable {
 
     @Column(nullable = false)
     private Boolean isActive;
+
+    private Boolean isCurrentRound;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_session_id", nullable = false)
@@ -43,6 +45,10 @@ public class Round implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="word_id", nullable = false)
     private Word drawingWord;
+
+    public String getCurrentWord() {
+        return drawingWord.getWord();
+    }
 
     @OneToMany(mappedBy = "round",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Timer> timers= new HashSet<>();
